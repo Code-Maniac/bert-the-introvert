@@ -1,0 +1,140 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+using UnityEngine.AI;
+using Random = UnityEngine.Random;
+
+enum NavAgentState
+{
+    Moving,
+    Waiting,
+}
+
+public class NavAgent : MonoBehaviour
+{
+    // movement
+    [Header("Movement")]
+    // The maximum speed that the enemy can move
+    [SerializeField] private float maxMoveSpeed = 2.0f;
+
+    [Header("Navigation")]
+    // The zones that the enemy may decide to move to
+    [SerializeField]
+    private ZoneHolder zoneHolder;
+    private float _totalWeight;
+    private NavMeshAgent _agent;
+    private NavAgentState _state = NavAgentState.Waiting;
+    private bool _isWaitCoroutineRunning = false;
+
+    [Header("Wait Times")]
+    // The wait times for when an enemy has reached a location
+    // pick a random time between the min and max to wait (in seconds)
+    [SerializeField] private float minWaitTime = 5.0f;
+    [SerializeField] private float maxWaitTime = 15.0f;
+
+
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        _agent = GetComponent<NavMeshAgent>();
+        _agent.updateRotation = false;
+        _agent.updateUpAxis = false;
+
+        // calculate the total weight
+        foreach(var zone in zoneHolder.zones)
+        {
+            _totalWeight += zone.weight;
+        }
+
+        // set the initial wait time to just be the minimum wait time
+        // 5 second grace period for players to start
+        EnterWaitingState();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        switch (_state)
+        {
+            case NavAgentState.Moving:
+                HandleMoving();
+                break;
+            case NavAgentState.Waiting:
+                HandleWaiting();
+                break;
+        }
+    }
+
+    void EnterMovingState()
+    {
+        _state = NavAgentState.Moving;
+
+        // pick new location
+        // set the location on the NavMeshAgent
+        _agent.SetDestination(PickNewLocation());
+    }
+
+    void EnterWaitingState()
+    {
+        _state = NavAgentState.Waiting;
+    }
+
+    void HandleMoving()
+    {
+        // check if we have reached the destination
+        if (_agent.remainingDistance <= _agent.stoppingDistance)
+        {
+            // we have reached the destination
+            // enter waiting state
+            EnterWaitingState();
+        }
+    }
+
+    void HandleWaiting()
+    {
+        // check if we have waited long enough
+        if (!_isWaitCoroutineRunning)
+        {
+            StartCoroutine(DoWait());
+        }
+    }
+
+    IEnumerator DoWait()
+    {
+        _isWaitCoroutineRunning = true;
+        yield return new WaitForSeconds(Mathf.Lerp(minWaitTime, maxWaitTime, Random.Range(0.0f, 1.0f)));
+        _isWaitCoroutineRunning = false;
+        EnterMovingState();
+    }
+
+    Vector2 PickNewLocation()
+    {
+        float random = Random.Range(0, _totalWeight);
+
+        var zones = zoneHolder.zones;
+        var collider = zones.Last().zone;
+
+        float sum = 0.0f;
+        foreach (var zone in zones)
+        {
+            var nextSum = sum + zone.weight;
+            if (random >= sum && random < nextSum)
+            {
+                // found the zone to go to
+                collider = zone.zone;
+                break;
+            }
+        }
+
+        var bounds = collider.bounds;
+
+        var output = new Vector2(
+            Mathf.Lerp(bounds.min.x, bounds.max.x, Random.Range(0.0f, 1.0f)),
+            Mathf.Lerp(bounds.min.y, bounds.max.x, Random.Range(0.0f, 1.0f)));
+        Debug.Log(output);
+        return output;
+    }
+}

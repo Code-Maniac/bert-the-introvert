@@ -181,7 +181,7 @@ public class PlayerController : MonoBehaviour
     private void OnDrawGizmos()
     {
         // draw a sphere at the player's position
-        Gizmos.color = Color.green;
-        Gizmos.DrawSphere(transform.position, 1);
+        // Gizmos.color = Color.green;
+        // Gizmos.DrawSphere(transform.position, 1);
     }
 }
