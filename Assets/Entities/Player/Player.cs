@@ -18,11 +18,11 @@ enum PlayerState
 
 public class PlayerController : MonoBehaviour
 {
-    [Header("Input")] [SerializeField] private InputAction moveAction;
+    [Header("Input")][SerializeField] private InputAction moveAction;
     [SerializeField] private InputAction useAction;
     [SerializeField] private InputAction pauseAction;
 
-    [FormerlySerializedAs("moveSpeed")] [FormerlySerializedAs("walkSpeed")] [Header("Movement")] [SerializeField] private float maxMoveSpeed;
+    [FormerlySerializedAs("moveSpeed")][FormerlySerializedAs("walkSpeed")][Header("Movement")][SerializeField] private float maxMoveSpeed;
     [SerializeField] private float moveAcceleration;
     [SerializeField] private float turnSpeed;
     [SerializeField] private Rigidbody2D rigidBody;
@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         _movementInput = moveAction.ReadValue<Vector2>();
-        Debug.Log(_movementInput);
+        // Debug.Log(_movementInput);
 
         switch (_playerState)
         {
@@ -91,12 +91,54 @@ public class PlayerController : MonoBehaviour
         // annoyance is a per time value that is deducted from your "personal space" stat
 
         playerPlayerStats.CurrentPersonalSpace -= annoyance;
+        Debug.Log("Being annoyed");
         if (playerPlayerStats.IsAnnoyed())
         {
             // you are annoyed, so you lose the game. This is a game over state
             _playerState = PlayerState.Lose;
         }
     }
+    public void Exercise(float fitness)
+    {
+        // function that is called by objects when they are in proximity to the player
+        // fitness is a value that is deducted from your "curentHealth" stat
+
+        playerPlayerStats.CurrentHealth += fitness;
+        Debug.Log("Doing exercise");
+        if (playerPlayerStats.IsUnfit())
+        {
+            // you are unfit, so you collapse. This is a game over state
+            _playerState = PlayerState.Lose;
+        }
+    }
+    public void Entertain(float entertainment)
+    {
+        // function that is called by enemies when they are in proximity to the player
+        // annoyance is a per time value that is deducted from your "personal space" stat
+
+        playerPlayerStats.CurrentBoredom += entertainment;
+        Debug.Log("Being Entertained");
+        if (playerPlayerStats.IsBored())
+        {
+            // you are bored, so you lose the game. This is a game over state
+            _playerState = PlayerState.Lose;
+        }
+    }
+    public void Feed(float food)
+    {
+        // function that is called by enemies when they are in proximity to the player
+        // annoyance is a per time value that is deducted from your "personal space" stat
+
+        playerPlayerStats.CurrentHunger += food;
+        Debug.Log("Being Fed");
+        if (playerPlayerStats.IsStarved())
+        {
+            // you are bored, so you lose the game. This is a game over state
+            _playerState = PlayerState.Lose;
+        }
+    }
+
+
 
     void UpdateNormal()
     {
@@ -122,6 +164,7 @@ public class PlayerController : MonoBehaviour
 
         // don't do anything here, we are waiting for the animation to finish
         // we can't move in this state
+
         _currentVelocity = Vector2.zero;
         ApplyMovement();
     }
@@ -140,7 +183,7 @@ public class PlayerController : MonoBehaviour
         //     _moveDirection = _movementInput;
         //     _currentVelocity += moveAcceleration * _moveDirection * Time.deltaTime;
         // }
-        if(_movementInput != Vector2.zero)
+        if (_movementInput != Vector2.zero)
         {
             // use slerp to rotate the movement direction towards the input direction
             _moveDirection = _movementInput;//Vector3.Slerp(_moveDirection, _movementInput, turnSpeed * Time.deltaTime);
