@@ -14,7 +14,7 @@ public class Tasks : MonoBehaviour
 
 
     static String[] job1 = { "Fridge", "Treadmill" };
-    static String[] job2 = { "", "" };
+    static String[] job2 = { "Fridge", "Treadmill" };
     String[][] jobs = { job1, job2 };
 
 
@@ -44,7 +44,6 @@ public class Tasks : MonoBehaviour
             }
             Debug.Log($"Setting Task {jobs[jobIndex][taskIndex]}");
             nextTask = GameObject.FindWithTag(jobs[jobIndex][taskIndex]);
-
         }
     }
 }

@@ -47,13 +47,11 @@ public class Proximity : MonoBehaviour
         proximity = Vector3.Distance(playerPos, enemyPos);
 
         CheckRange();
-        if (Input.GetKeyDown("space"))
-        {  
-            inUse = true;
-        }
+
         if ((!actioned || Input.GetKey("space")) && inRange)
         {
- 
+            inUse = true;
+
             CalculateChange();
             MakeChange();
         }
