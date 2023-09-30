@@ -9,7 +9,8 @@ enum StatAction
     Annoy,
     Entertain,
     Exercise,
-    Feed
+    Feed,
+    None
 }
 
 public class Proximity : MonoBehaviour
@@ -17,6 +18,7 @@ public class Proximity : MonoBehaviour
     float proximity;
     float change;
     bool inRange;
+    public bool inUse = false;
     Vector3 playerPos;
     Vector3 enemyPos;
 
@@ -45,13 +47,22 @@ public class Proximity : MonoBehaviour
         proximity = Vector3.Distance(playerPos, enemyPos);
 
         CheckRange();
+        if (Input.GetKeyDown("space"))
+        {  
+            inUse = true;
+        }
         if ((!actioned || Input.GetKey("space")) && inRange)
         {
+ 
             CalculateChange();
             MakeChange();
         }
+        else if (Input.GetKeyUp("space"))
+        {
+            inUse = false;
+        }
 
-        
+
 
     }
 
@@ -66,10 +77,12 @@ public class Proximity : MonoBehaviour
                 _playerController.Entertain(change);
                 break;
             case StatAction.Feed:
-                    _playerController.Feed(change);
+                _playerController.Feed(change);
                 break;
             case StatAction.Exercise:
                 _playerController.Exercise(change);
+                break;
+            case StatAction.None:
                 break;
         }
     }

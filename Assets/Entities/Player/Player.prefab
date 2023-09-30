@@ -188,7 +188,7 @@ MonoBehaviour:
   turnSpeed: 12
   rigidBody: {fileID: 4351865557579159815}
   collider: {fileID: 7116322046213514916}
-  _playerStats: {fileID: -4229976940169873991}
+  playerPlayerStats: {fileID: -4229976940169873991}
 --- !u!114 &-4229976940169873991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,16 +201,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d37a1ff020ee8844e9072ff97d18e459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hungerUi: {fileID: 0}
+  fitnessUi: {fileID: 0}
+  boredomUi: {fileID: 0}
+  personalSpaceUi: {fileID: 0}
   startHunger: 100
-  startExercise: 100
+  startFitness: 100
   startPersonalSpace: 100
   startMoney: 50
   startBoredom: 100
-  rateHunger: 1
-  rateExercise: 1
-  ratePersonalSpace: 1
-  rateMoney: 0
-  rateBoredom: 1
+  rateHunger: 100
+  rateFitness: 60
+  ratePersonalSpace: 30
+  rateBoredom: 20
 --- !u!50 &4351865557579159815
 Rigidbody2D:
   serializedVersion: 4
