@@ -74,5 +74,18 @@ public class PlayerStats : MonoBehaviour
         // update stats values based on their rate of decay
 
         // not quite as simple as this some stats will not be decaying at times due
+
+        // print current values to debug
+        Debug.Log($"hunger - {currentHunger}");
+        Debug.Log($"exercise - {currentExercise}");
+        Debug.Log($"personal space - {currentPersonalSpace}");
+        Debug.Log($"money - {currentMoney}");
+        Debug.Log($"boredom - {currentBoredom}");
+
+        if (IsAnnoyed())
+        {
+            Debug.Log("Player is annoyed: You lose!");
+        }
+
     }
 }

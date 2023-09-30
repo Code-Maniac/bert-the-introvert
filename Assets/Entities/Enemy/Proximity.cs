@@ -12,12 +12,13 @@ public class Proximity : MonoBehaviour
     [SerializeField] float maxAnnoyance = 1f;
     [SerializeField] float maxDist = 10f;
 
+    private PlayerController _playerController;
 
 
     // Start is called before the first frame update
     void Start()
     {
-
+        _playerController = player.GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -29,7 +30,7 @@ public class Proximity : MonoBehaviour
 
         SetDamage();
 
-        Annoy(annoyance);
+        _playerController.Annoy(annoyance);
 
         Debug.Log($"enemy - {enemyPos}");
         Debug.Log($"player - {playerPos}");
