@@ -5,11 +5,11 @@ using UnityEngine;
 public class Proximity : MonoBehaviour
 {
     float proximity;
-    float damage;
+    float annoyance;
     Vector3 playerPos;
     Vector3 enemyPos;
     [SerializeField] GameObject player;
-    [SerializeField] float annoyance = 1f;
+    [SerializeField] float maxAnnoyance = 1f;
     [SerializeField] float maxDist = 10f;
 
 
@@ -29,10 +29,12 @@ public class Proximity : MonoBehaviour
 
         SetDamage();
 
+        Annoy(annoyance);
+
         Debug.Log($"enemy - {enemyPos}");
         Debug.Log($"player - {playerPos}");
         Debug.Log($"proximity - {proximity}");
-        Debug.Log($"damage - {damage}");
+        Debug.Log($"damage - {annoyance}");
 
     }
     // calculates damage rates based on distance to player
@@ -40,11 +42,11 @@ public class Proximity : MonoBehaviour
     {
         if (proximity < maxDist)
         {
-            damage = (1 - proximity / maxDist) * annoyance;
+            annoyance = (1 - proximity / maxDist) * maxAnnoyance * Time.deltaTime;
         }
         else
         {
-            damage = 0f;
+            annoyance = 0f;
         }
     }
 }
