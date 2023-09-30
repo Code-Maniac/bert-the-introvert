@@ -1,68 +1,88 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerStats : MonoBehaviour
 {
+    [SerializeField] GameObject hungerUi;
+    [SerializeField] GameObject fitnessUi;
+    [SerializeField] GameObject boredomUi;
+    [SerializeField] GameObject personalSpaceUi;
     [SerializeField] private float startHunger = 100f;
-    [SerializeField] private float startExercise = 100f;
+    [SerializeField] private float startFitness = 100f;
     [SerializeField] private float startPersonalSpace = 100f;
     [SerializeField] private float startMoney = 50f;
     [SerializeField] private float startBoredom = 100f;
 
-    // rate of decay for each stat
-    [SerializeField] private float rateHunger = 1f;
-    [SerializeField] private float rateExercise = 1f;
-    [SerializeField] private float ratePersonalSpace = 1f;
-    [SerializeField] private float rateBoredom = 1f;
+    // rate of decay for each stat (timetaken in s to go from full to zero)
+    [SerializeField] private float rateHunger = 20f;
+    [SerializeField] private float rateFitness = 10f;
+    [SerializeField] private float ratePersonalSpace = 30f;
+    [SerializeField] private float rateBoredom = 25f;
 
     private float currentHunger = 100f;
-    private float currentExercise = 100f;
+    private float currentFitness = 100f;
     private float currentPersonalSpace = 100f;
     private float currentMoney = 50f;
     private float currentBoredom = 100f;
+
+    
 
     // add get set for "current" variables
     public float CurrentHunger
     {
         get => currentHunger;
-        set => currentHunger = value;
+        set => currentHunger = Mathf.Min(value,startHunger);
     }
 
-    public float CurrentExercise
+    public float CurrentHealth
     {
-        get => currentExercise;
-        set => currentExercise = value;
+        get => currentFitness;
+        set => currentFitness = Mathf.Min(value,startFitness);
     }
 
     public float CurrentPersonalSpace
     {
         get => currentPersonalSpace;
-        set => currentPersonalSpace = value;
+        set => currentPersonalSpace = Mathf.Min(value,startPersonalSpace);
     }
 
-    public float CurrentMoney
-    {
-        get => currentMoney;
-        set => currentMoney = value;
-    }
 
     public float CurrentBoredom
     {
         get => currentBoredom;
-        set => currentBoredom = value;
+        set => currentBoredom = Mathf.Min(value,startBoredom);
     }
+
+    // public float CurrentMoney
+    // {
+    //     get => currentMoney;
+    //     set => currentMoney = value;
+    // }
 
     public bool IsAnnoyed()
     {
         return CurrentPersonalSpace <= 0.0f;
+    }
+    public bool IsUnfit()
+    {
+        return CurrentHealth <= 0.0f;
+    }
+    public bool IsBored()
+    {
+        return CurrentBoredom <= 0.0f;
+    }
+    public bool IsStarved()
+    {
+        return CurrentHunger <= 0.0f;
     }
 
     // Start is called before the first frame update
     void Start()
     {
         currentHunger = startHunger;
-        currentExercise = startExercise;
+        currentFitness = startFitness;
         currentPersonalSpace = startPersonalSpace;
         currentMoney = startMoney;
         currentBoredom = startBoredom;
@@ -72,20 +92,30 @@ public class PlayerStats : MonoBehaviour
     void Update()
     {
         // update stats values based on their rate of decay
-
-        // not quite as simple as this some stats will not be decaying at times due
-
-        // print current values to debug
-        Debug.Log($"hunger - {currentHunger}");
-        Debug.Log($"exercise - {currentExercise}");
-        Debug.Log($"personal space - {currentPersonalSpace}");
-        Debug.Log($"money - {currentMoney}");
-        Debug.Log($"boredom - {currentBoredom}");
+        DecayStats();
+        UpdateUI();
 
         if (IsAnnoyed())
         {
             Debug.Log("Player is annoyed: You lose!");
         }
 
+
+    }
+
+    private void DecayStats()
+    {
+        currentBoredom = Mathf.Max(currentBoredom-((startBoredom / rateBoredom) * Time.deltaTime),0);
+        currentFitness = Mathf.Max(currentFitness-((startFitness / rateFitness) * Time.deltaTime),0);
+        currentHunger = Mathf.Max(currentHunger-((startHunger / rateHunger) * Time.deltaTime),0);
+        
+    }
+
+    private void UpdateUI()
+    {
+        hungerUi.GetComponent<TMP_Text>().text = $"Hunger: {Mathf.Round(currentHunger)}";
+        fitnessUi.GetComponent<TMP_Text>().text = $"Fitness: {Mathf.Round(currentFitness)}";
+        boredomUi.GetComponent<TMP_Text>().text = $"Boredom: {Mathf.Round(currentBoredom)}";
+        personalSpaceUi.GetComponent<TMP_Text>().text = $"Personal Space: {Mathf.Round(currentPersonalSpace)}";
     }
 }

@@ -1,16 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
+
+enum StatAction
+{
+    Annoy,
+    Entertain,
+    Exercise,
+    Feed,
+    None
+}
 
 public class Proximity : MonoBehaviour
 {
     float proximity;
-    float annoyance;
+    float change;
+    bool inRange;
+    public bool inUse = false;
     Vector3 playerPos;
     Vector3 enemyPos;
+
+    [SerializeField] bool actioned = false;
     [SerializeField] GameObject player;
-    [SerializeField] float maxAnnoyance = 1f;
+
+    [SerializeField] StatAction statAction;
+    [SerializeField] float maxChange = 1f;
     [SerializeField] float maxDist = 10f;
+
 
     private PlayerController _playerController;
 
@@ -27,26 +45,72 @@ public class Proximity : MonoBehaviour
         playerPos = player.transform.position;
         proximity = Vector3.Distance(playerPos, enemyPos);
 
-        SetDamage();
+        CheckRange();
 
-        _playerController.Annoy(annoyance);
+        if ((!actioned || Input.GetKey("space")) && inRange)
+        {
+            inUse = true;
 
-        Debug.Log($"enemy - {enemyPos}");
-        Debug.Log($"player - {playerPos}");
-        Debug.Log($"proximity - {proximity}");
-        Debug.Log($"damage - {annoyance}");
+            CalculateChange();
+            MakeChange();
+        }
+        else if (Input.GetKeyUp("space"))
+        {
+            inUse = false;
+        }
+
+
 
     }
-    // calculates damage rates based on distance to player
-    private void SetDamage()
+
+    private void MakeChange()
+    {
+        switch (statAction)
+        {
+            case StatAction.Annoy:
+                _playerController.Annoy(change);
+                break;
+            case StatAction.Entertain:
+                _playerController.Entertain(change);
+                break;
+            case StatAction.Feed:
+                _playerController.Feed(change);
+                break;
+            case StatAction.Exercise:
+                _playerController.Exercise(change);
+                break;
+            case StatAction.None:
+                break;
+        }
+    }
+
+    private void CheckRange()
     {
         if (proximity < maxDist)
         {
-            annoyance = (1 - proximity / maxDist) * maxAnnoyance * Time.deltaTime;
+            inRange = true;
         }
         else
         {
-            annoyance = 0f;
+            inRange = false;
+        }
+    }
+
+    // calculates damage rates based on distance to player
+    private void CalculateChange()
+    {
+        if (proximity < maxDist && !actioned)
+        {
+            // Debug.Log($"proximity = {proximity}");
+            change = (1 - proximity / maxDist) * maxChange * Time.deltaTime;
+        }
+        else if (actioned)
+        {
+            change = maxChange * Time.deltaTime;
+        }
+        else
+        {
+            change = 0f;
         }
     }
 }

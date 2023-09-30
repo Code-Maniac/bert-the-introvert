@@ -115,10 +115,13 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8c9789f9c12d5bf49ba328cb69f543a6, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 9151968008984544935, guid: 93d97783c6534194fbadde52b0358269, type: 3}
-  maxAnnoyance: 1
-  maxDist: 10
+  m_EditorClassIdentifier:
+  inUse: 0
+  actioned: 0
+  player: {fileID: 0}
+  statAction: 0
+  maxChange: 3
+  maxDist: 1
 --- !u!195 &3568683100280196474
 NavMeshAgent:
   m_ObjectHideFlags: 0
