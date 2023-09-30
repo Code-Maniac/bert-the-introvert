@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
@@ -27,12 +28,13 @@ public class NavAgent : MonoBehaviour
     private NavMeshAgent _agent;
     private NavAgentState _state = NavAgentState.Waiting;
     private bool _isWaitCoroutineRunning = false;
+    private int _currentZoneIndex = -1;
 
     [Header("Wait Times")]
     // The wait times for when an enemy has reached a location
     // pick a random time between the min and max to wait (in seconds)
-    [SerializeField] private float minWaitTime = 5.0f;
-    [SerializeField] private float maxWaitTime = 15.0f;
+    [SerializeField] private float minWaitTime = 2.0f;
+    [SerializeField] private float maxWaitTime = 7.0f;
 
 
 
@@ -75,6 +77,7 @@ public class NavAgent : MonoBehaviour
         // pick new location
         // set the location on the NavMeshAgent
         _agent.SetDestination(PickNewLocation());
+        _agent.speed = maxMoveSpeed;
     }
 
     void EnterWaitingState()
@@ -114,17 +117,26 @@ public class NavAgent : MonoBehaviour
     {
         float random = Random.Range(0, _totalWeight);
 
-        var zones = zoneHolder.zones;
+        // make sure we can't select the same zone twice
+        var zones = new List<ZoneWeight>(zoneHolder.zones);
+        if (_currentZoneIndex != -1)
+        {
+            zones.RemoveAt(_currentZoneIndex);
+        }
+
         var collider = zones.Last().zone;
+        _currentZoneIndex = zones.Count - 1;
 
         float sum = 0.0f;
-        foreach (var zone in zones)
+        for (int i = 0; i < zones.Count; ++i)
         {
+            var zone = zones[i];
             var nextSum = sum + zone.weight;
             if (random >= sum && random < nextSum)
             {
                 // found the zone to go to
                 collider = zone.zone;
+                _currentZoneIndex = i;
                 break;
             }
         }
