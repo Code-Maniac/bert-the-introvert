@@ -97,8 +97,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c9789f9c12d5bf49ba328cb69f543a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inUse: 0
   actioned: 0
   player: {fileID: 0}
   statAction: 0
   maxChange: 3
-  maxDist: 10
+  maxDist: 1

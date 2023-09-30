@@ -44,3 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9f29816f46b4cb4c90cc78bed33d908, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jobStruct:
+  - taskName: asd
+    jobNumber: 0
+  - taskName: sa
+    jobNumber: 0
+  - taskName: sa
+    jobNumber: 0
