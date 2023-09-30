@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -11,7 +12,8 @@ enum PlayerState
 {
     Normal,
     Item,
-    Talking
+    Talking,
+    Lose
 }
 
 public class PlayerController : MonoBehaviour
@@ -40,6 +42,11 @@ public class PlayerController : MonoBehaviour
     // example of this is if the player is spawned during some cutscene, and as such may start in some different state
     private PlayerState _playerState = PlayerState.Normal;
 
+    [FormerlySerializedAs("_playerStats")]
+    [Header("Player Stats")]
+    [SerializeField]
+    private PlayerStats playerPlayerStats;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,15 +56,12 @@ public class PlayerController : MonoBehaviour
         pauseAction.Enable();
 
         // load player items and stats from the save file
+
+        // get other scripts
+
     }
 
     void Update()
-    // {
-    //
-    // }
-    //
-    // // Update is called once per frame
-    // void FixedUpdate()
     {
         _movementInput = moveAction.ReadValue<Vector2>();
         Debug.Log(_movementInput);
@@ -79,6 +83,19 @@ public class PlayerController : MonoBehaviour
         //     animator.SetFloat(XDirection, _movementInput.x);
         //     animator.SetFloat(YDirection, _movementInput.y);
         // }
+    }
+
+    public void Annoy(float annoyance)
+    {
+        // function that is called by enemies when they are in proximity to the player
+        // annoyance is a per time value that is deducted from your "personal space" stat
+
+        playerPlayerStats.CurrentPersonalSpace -= annoyance;
+        if (playerPlayerStats.IsAnnoyed())
+        {
+            // you are annoyed, so you lose the game. This is a game over state
+            _playerState = PlayerState.Lose;
+        }
     }
 
     void UpdateNormal()
