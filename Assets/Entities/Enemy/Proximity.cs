@@ -14,7 +14,6 @@ public class Proximity : MonoBehaviour
 
     private PlayerController _playerController;
 
-
     // Start is called before the first frame update
     void Start()
     {
