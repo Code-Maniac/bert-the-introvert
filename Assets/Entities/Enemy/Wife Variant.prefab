@@ -16,6 +16,14 @@ PrefabInstance:
       propertyPath: statAction
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 766654951008761748, guid: 4831ed066659c14449d32e23df111232, type: 3}
+      propertyPath: maxMoveSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3568683100280196474, guid: 4831ed066659c14449d32e23df111232, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5216852960379332178, guid: 4831ed066659c14449d32e23df111232, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.56

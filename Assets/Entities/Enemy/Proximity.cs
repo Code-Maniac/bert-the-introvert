@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -44,6 +45,11 @@ public class Proximity : MonoBehaviour
         enemyPos = transform.position;
         playerPos = player.transform.position;
         proximity = Vector3.Distance(playerPos, enemyPos);
+
+        // if (this.tag == "Fridge")
+        // {
+        //     Debug.Log($"Proximity = {proximity}");
+        // }
 
         CheckRange();
 
@@ -112,5 +118,11 @@ public class Proximity : MonoBehaviour
         {
             change = 0f;
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawLine(transform.position, player.transform.position);
+        Gizmos.DrawSphere(transform.position, maxDist);
     }
 }

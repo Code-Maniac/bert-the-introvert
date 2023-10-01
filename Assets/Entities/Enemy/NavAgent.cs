@@ -9,6 +9,7 @@ using Random = UnityEngine.Random;
 
 enum NavAgentState
 {
+    Inactive,
     Moving,
     Waiting,
 }
@@ -45,15 +46,22 @@ public class NavAgent : MonoBehaviour
         _agent.updateRotation = false;
         _agent.updateUpAxis = false;
 
-        // calculate the total weight
-        foreach(var zone in zoneHolder.zones)
+        if (zoneHolder == null || zoneHolder.zones.Count == 0)
         {
-            _totalWeight += zone.weight;
+            _state = NavAgentState.Inactive;
         }
+        else
+        {
+            // calculate the total weight
+            foreach(var zone in zoneHolder.zones)
+            {
+                _totalWeight += zone.weight;
+            }
 
-        // set the initial wait time to just be the minimum wait time
-        // 5 second grace period for players to start
-        EnterWaitingState();
+            // set the initial wait time to just be the minimum wait time
+            // 5 second grace period for players to start
+            EnterWaitingState();
+        }
     }
 
     // Update is called once per frame
@@ -66,6 +74,9 @@ public class NavAgent : MonoBehaviour
                 break;
             case NavAgentState.Waiting:
                 HandleWaiting();
+                break;
+            case NavAgentState.Inactive: // we don't do anything if we are inactive
+            default:
                 break;
         }
     }
@@ -146,7 +157,6 @@ public class NavAgent : MonoBehaviour
         var output = new Vector2(
             Mathf.Lerp(bounds.min.x, bounds.max.x, Random.Range(0.0f, 1.0f)),
             Mathf.Lerp(bounds.min.y, bounds.max.x, Random.Range(0.0f, 1.0f)));
-        Debug.Log(output);
         return output;
     }
 }
