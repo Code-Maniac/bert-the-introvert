@@ -23,8 +23,11 @@ public class Proximity : MonoBehaviour
     Vector3 playerPos;
     Vector3 enemyPos;
 
+    [SerializeField] GameObject text;
+    [SerializeField] bool alwaysShowText = false;
     [SerializeField] bool actioned = false;
     [SerializeField] GameObject player;
+
 
     [SerializeField] StatAction statAction;
     [SerializeField] float maxChange = 1f;
@@ -37,6 +40,7 @@ public class Proximity : MonoBehaviour
     void Start()
     {
         _playerController = player.GetComponent<PlayerController>();
+
     }
 
     // Update is called once per frame
@@ -52,7 +56,12 @@ public class Proximity : MonoBehaviour
         // }
 
         CheckRange();
+        CheckAction();
 
+    }
+
+    private void CheckAction()
+    {
         if ((!actioned || Input.GetKey("space")) && inRange)
         {
             inUse = true;
@@ -64,9 +73,6 @@ public class Proximity : MonoBehaviour
         {
             inUse = false;
         }
-
-
-
     }
 
     private void MakeChange()
@@ -100,6 +106,17 @@ public class Proximity : MonoBehaviour
         {
             inRange = false;
         }
+
+        if (inRange || alwaysShowText)
+        {
+            text.GetComponent<MeshRenderer>().enabled = true;
+        }
+        else
+        {
+            text.GetComponent<MeshRenderer>().enabled = false;
+        }
+
+
     }
 
     // calculates damage rates based on distance to player
