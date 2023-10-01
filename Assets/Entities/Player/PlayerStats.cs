@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -27,32 +29,32 @@ public class PlayerStats : MonoBehaviour
     private float currentMoney = 50f;
     private float currentBoredom = 100f;
 
-    
+
 
     // add get set for "current" variables
     public float CurrentHunger
     {
         get => currentHunger;
-        set => currentHunger = Mathf.Min(value,startHunger);
+        set => currentHunger = Mathf.Min(value, startHunger);
     }
 
     public float CurrentHealth
     {
         get => currentFitness;
-        set => currentFitness = Mathf.Min(value,startFitness);
+        set => currentFitness = Mathf.Min(value, startFitness);
     }
 
     public float CurrentPersonalSpace
     {
         get => currentPersonalSpace;
-        set => currentPersonalSpace = Mathf.Min(value,startPersonalSpace);
+        set => currentPersonalSpace = Mathf.Min(value, startPersonalSpace);
     }
 
 
     public float CurrentBoredom
     {
         get => currentBoredom;
-        set => currentBoredom = Mathf.Min(value,startBoredom);
+        set => currentBoredom = Mathf.Min(value, startBoredom);
     }
 
     // public float CurrentMoney
@@ -95,6 +97,11 @@ public class PlayerStats : MonoBehaviour
         DecayStats();
         UpdateUI();
 
+        if (currentBoredom <= 0 || currentFitness <= 0 || currentHunger <= 0 || currentPersonalSpace <= 0)
+        {
+            GameOver();
+        }
+
         if (IsAnnoyed())
         {
             Debug.Log("Player is annoyed: You lose!");
@@ -105,17 +112,21 @@ public class PlayerStats : MonoBehaviour
 
     private void DecayStats()
     {
-        currentBoredom = Mathf.Max(currentBoredom-((startBoredom / rateBoredom) * Time.deltaTime),0);
-        currentFitness = Mathf.Max(currentFitness-((startFitness / rateFitness) * Time.deltaTime),0);
-        currentHunger = Mathf.Max(currentHunger-((startHunger / rateHunger) * Time.deltaTime),0);
-        
+        currentBoredom = Mathf.Max(currentBoredom - ((startBoredom / rateBoredom) * Time.deltaTime), 0);
+        currentFitness = Mathf.Max(currentFitness - ((startFitness / rateFitness) * Time.deltaTime), 0);
+        currentHunger = Mathf.Max(currentHunger - ((startHunger / rateHunger) * Time.deltaTime), 0);
+
     }
 
     private void UpdateUI()
     {
-        hungerUi.GetComponent<TMP_Text>().text = $"Hunger: {Mathf.Round(currentHunger)}";
-        fitnessUi.GetComponent<TMP_Text>().text = $"Fitness: {Mathf.Round(currentFitness)}";
-        boredomUi.GetComponent<TMP_Text>().text = $"Boredom: {Mathf.Round(currentBoredom)}";
-        personalSpaceUi.GetComponent<TMP_Text>().text = $"Personal Space: {Mathf.Round(currentPersonalSpace)}";
+        hungerUi.GetComponent<Image>().fillAmount = currentHunger / 100;
+        fitnessUi.GetComponent<Image>().fillAmount = currentFitness / 100;
+        boredomUi.GetComponent<Image>().fillAmount = currentBoredom / 100;
+        personalSpaceUi.GetComponent<Image>().fillAmount = currentPersonalSpace / 100;
+    }
+        private static void GameOver()
+    {
+        SceneManager.LoadScene("GameOver");
     }
 }

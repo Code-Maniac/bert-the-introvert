@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 
 enum PlayerState
 {
@@ -98,6 +99,7 @@ public class PlayerController : MonoBehaviour
             _playerState = PlayerState.Lose;
         }
     }
+
     public void Exercise(float fitness)
     {
         // function that is called by objects when they are in proximity to the player
@@ -137,7 +139,6 @@ public class PlayerController : MonoBehaviour
             _playerState = PlayerState.Lose;
         }
     }
-
 
 
     void UpdateNormal()

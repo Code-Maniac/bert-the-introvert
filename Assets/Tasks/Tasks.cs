@@ -1,57 +1,123 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
+using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
+[Serializable]
+public class Task
+{
+    public bool completed;
+    public GameObject taskObject;
+    public string jobDescription;
+}
+
 
 public class Tasks : MonoBehaviour
 {
-
     GameObject nextTask;
-    int jobIndex;
     int taskIndex;
     bool jobsComplete = false;
+    float dayTime;
 
+    [SerializeField] GameObject clock;
 
+    [SerializeField] float dayLength = 30f;
+    [SerializeField] private List<Task> tasks;
+    [SerializeField] private TMP_Text textField;
 
-    static String[] job1 = { "Fridge", "Treadmill", "Bin" };
-    static String[] job2 = { "Fridge", "Treadmill" };
-    String[][] jobs = { job1, job2 };
+    private void CheckProgress()
+    {
+        StringBuilder sb = new StringBuilder();
 
+        sb.AppendLine("<u>TO DO</u>");
+        sb.AppendLine();
+
+        for (int i = 0; i < tasks.Count; i++)
+        {
+            if (tasks[i].completed)
+            {
+                sb.Append("<s>");
+            }
+            sb.Append(tasks[i].jobDescription);
+            if (tasks[i].completed)
+            {
+                sb.Append("</s>");
+            }
+            sb.Append("\n");
+        }
+        textField.SetText(sb.ToString());
+
+    }
 
     void Start()
     {
         taskIndex = 0;
-        jobIndex = 0;
-        Debug.Log($"Setting Task {jobs[jobIndex][taskIndex]}");
-        nextTask = GameObject.FindWithTag(jobs[jobIndex][taskIndex]);
+        dayTime = dayLength;
+        nextTask = tasks[taskIndex].taskObject;
     }
 
+    private void OnValidate()
+    {
+        CheckProgress();
+    }
 
     // Update is called once per frame
     void Update()
     {
+        CheckProgress();
+
+        IncreaseTime();
+
         if (!jobsComplete && nextTask.GetComponent<Proximity>().inUse)
         {
-            Debug.Log($"{jobs[jobIndex][taskIndex]} JOB COMPLETE");
+            Debug.Log($"{tasks[taskIndex].jobDescription} JOB COMPLETE");
+            tasks[taskIndex].completed = true;
             taskIndex += 1;
-            if (taskIndex >= jobs[jobIndex].Length)
+            if (taskIndex >= tasks.Count)
             {
-                Debug.Log("TASK COMPLETE!!");
-                jobIndex += 1;
-                taskIndex = 0;
-            }
-            if (jobIndex < jobs.Length)
-            {
-                Debug.Log($"Setting Task {jobs[jobIndex][taskIndex]}");
-                nextTask = GameObject.FindWithTag(jobs[jobIndex][taskIndex]);
+                Debug.Log("TASKS COMPLETE!!");
+                jobsComplete = true;
             }
             else
             {
-                Debug.Log("ALL JOBS COMPLETE!!");
-                jobsComplete = true;
+                Debug.Log($"Setting Task {tasks[taskIndex].jobDescription}");
+                nextTask = tasks[taskIndex].taskObject;
             }
 
+
         }
+    }
+
+    private void IncreaseTime()
+    {
+        dayTime -= Time.deltaTime;
+        clock.GetComponent<Image>().fillAmount = dayTime / dayLength;
+        if (dayTime <= 0)
+        {
+            if (jobsComplete)
+            {
+                NextLevel();
+            }
+            else
+            {
+                GameOver();
+            }
+        }
+    }
+
+    private static void NextLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    private static void GameOver()
+    {
+        SceneManager.LoadScene("GameOver");
     }
 }
 
@@ -59,65 +125,3 @@ public class Tasks : MonoBehaviour
 
 
 
-
-
-// public class Tasks : MonoBehaviour
-// {
-//     [System.Serializable]
-//     public struct Jobs
-//     {
-//         public GameObject taskName;
-//         public int jobNumber;
-//     }
-//     public Jobs[] jobStruct;
-
-//     GameObject nextTask;
-//     int jobIndex;
-//     int taskIndex;
-//     bool jobsComplete = false;
-
-
-
-
-//     static String[] job1 = { "Fridge", "Treadmill", "Bin" };
-//     static String[] job2 = { "Fridge", "Treadmill" };
-//     String[][] jobs = { job1, job2 };
-
-
-//     void Start()
-//     {
-//         Debug.Log(jobStruct[0]);
-
-
-//         taskIndex = 0;
-//         jobIndex = 0;
-//         Debug.Log($"Setting Task {jobs[jobIndex][taskIndex]}");
-//         nextTask = GameObject.FindWithTag(jobs[jobIndex][taskIndex]);
-//     }
-
-//     void Update()
-//     {
-//         if (!jobsComplete && nextTask.GetComponent<Proximity>().inUse)
-//         {
-//             Debug.Log($"{jobs[jobIndex][taskIndex]} JOB COMPLETE");
-//             taskIndex += 1;
-//             if (taskIndex >= jobs[jobIndex].Length)
-//             {
-//                 Debug.Log("TASK COMPLETE!!");
-//                 jobIndex += 1;
-//                 taskIndex = 0;
-//             }
-//             if (jobIndex < jobs.Length)
-//             {
-//                 Debug.Log($"Setting Task {jobs[jobIndex][taskIndex]}");
-//                 nextTask = GameObject.FindWithTag(jobs[jobIndex][taskIndex]);
-//             }
-//             else
-//             {
-//                 Debug.Log("ALL JOBS COMPLETE!!");
-//                 jobsComplete = true;
-//             }
-
-//         }
-//     }
-// }
