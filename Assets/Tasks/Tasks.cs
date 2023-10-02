@@ -36,6 +36,7 @@ public class Tasks : MonoBehaviour
 
         sb.AppendLine("<u>TO DO</u>");
         sb.AppendLine();
+        bool firstTask = true;
 
         for (int i = 0; i < tasks.Count; i++)
         {
@@ -43,7 +44,24 @@ public class Tasks : MonoBehaviour
             {
                 sb.Append("<s>");
             }
+            if (!tasks[i].completed && firstTask)
+            {
+                sb.Append("<b>");
+            }
+            else if (!tasks[i].completed)
+            {
+                sb.Append("<color=\"grey\">");
+            }
             sb.Append(tasks[i].jobDescription);
+            if (!tasks[i].completed && firstTask)
+            {
+                sb.Append("</b>");
+                firstTask = false;
+            }
+            else if (!tasks[i].completed)
+            {
+                sb.Append("</color=\"grey\">");
+            }
             if (tasks[i].completed)
             {
                 sb.Append("</s>");
