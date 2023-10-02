@@ -1584,18 +1584,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9f29816f46b4cb4c90cc78bed33d908, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jobsComplete: 0
   clock: {fileID: 7377419536698052693}
   dayLength: 30
   tasks:
   - completed: 0
     taskObject: {fileID: 0}
-    jobDescription: Tidy Fridge
-  - completed: 0
-    taskObject: {fileID: 0}
-    jobDescription: Do Exercise
-  - completed: 0
-    taskObject: {fileID: 0}
-    jobDescription: Do Wife
+    jobDescription: Check Fridge
   textField: {fileID: 2781244565770890674}
 --- !u!114 &2781244565770890674
 MonoBehaviour:
@@ -1621,11 +1616,7 @@ MonoBehaviour:
 
     
 
-    Tidy Fridge
-
-    Do Exercise
-
-    Do Wife
+    Check Fridge
 
 '
   m_isRightToLeft: 0

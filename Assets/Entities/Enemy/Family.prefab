@@ -83,7 +83,9 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3950485777923178835}
-  m_Text: the wife
+  m_Text: 'the
+
+    good boy'
   m_OffsetZ: 0
   m_CharacterSize: 0.05
   m_LineSpacing: 1
@@ -113,7 +115,7 @@ GameObject:
   - component: {fileID: -3462939445553417620}
   m_Layer: 0
   m_Name: Family
-  m_TagString: Untagged
+  m_TagString: Son
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -175,7 +177,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 993ea4204f230d046b6f8a406461b186, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fcbac62e7cc8ce94c80353cd966318b5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -221,8 +223,8 @@ MonoBehaviour:
   player: {fileID: 0}
   audioclips: []
   statAction: 0
-  maxChange: 7.12
-  maxDist: 3.06
+  maxChange: -10
+  maxDist: 3
 --- !u!195 &3568683100280196474
 NavMeshAgent:
   m_ObjectHideFlags: 0
