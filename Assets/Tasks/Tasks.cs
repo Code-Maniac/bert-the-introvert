@@ -21,7 +21,7 @@ public class Tasks : MonoBehaviour
 {
     GameObject nextTask;
     int taskIndex;
-    bool jobsComplete = false;
+    [SerializeField] bool jobsComplete = false;
     float dayTime;
 
     [SerializeField] GameObject clock;

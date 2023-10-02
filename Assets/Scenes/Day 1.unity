@@ -5266,6 +5266,8 @@ PrefabInstance:
 
         
 
+        Use Exercise Bike
+
 '
       objectReference: {fileID: 0}
     - target: {fileID: 2781244565770890674, guid: 567bbed18e65bb940b3d4229ae00961a, type: 3}
@@ -5278,23 +5280,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6747719968981084552, guid: 567bbed18e65bb940b3d4229ae00961a, type: 3}
       propertyPath: tasks.Array.data[1].completed
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6747719968981084552, guid: 567bbed18e65bb940b3d4229ae00961a, type: 3}
       propertyPath: tasks.Array.data[0].taskObject
       value: 
-      objectReference: {fileID: 1543310571}
-    - target: {fileID: 6747719968981084552, guid: 567bbed18e65bb940b3d4229ae00961a, type: 3}
-      propertyPath: tasks.Array.data[1].taskObject
-      value: 
-      objectReference: {fileID: 1543310571}
+      objectReference: {fileID: 1759721127}
     - target: {fileID: 6747719968981084552, guid: 567bbed18e65bb940b3d4229ae00961a, type: 3}
       propertyPath: tasks.Array.data[0].jobDescription
-      value: Check Fridge
+      value: Use Exercise Bike
       objectReference: {fileID: 0}
     - target: {fileID: 6747719968981084552, guid: 567bbed18e65bb940b3d4229ae00961a, type: 3}
       propertyPath: tasks.Array.data[1].jobDescription
-      value: Check Fridge
+      value: Do Wife
       objectReference: {fileID: 0}
     - target: {fileID: 7605499073049933475, guid: 567bbed18e65bb940b3d4229ae00961a, type: 3}
       propertyPath: m_Pivot.x
@@ -12960,11 +12958,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.7927246, y: 2.6970215}
   m_EdgeRadius: 0
---- !u!1 &1543310571 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7097946393299278061, guid: b79aefb3acd1b904da04f43cec723bf6, type: 3}
-  m_PrefabInstance: {fileID: 744819460}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1581267357
 GameObject:
   m_ObjectHideFlags: 0
@@ -13760,6 +13753,11 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 6190011775745259544, guid: b79aefb3acd1b904da04f43cec723bf6, type: 3}
   m_PrefabInstance: {fileID: 744819460}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1759721127 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7097946393299278061, guid: b79aefb3acd1b904da04f43cec723bf6, type: 3}
+  m_PrefabInstance: {fileID: 7820523607925116745}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1759721132 stripped
 Transform:

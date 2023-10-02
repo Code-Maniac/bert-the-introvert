@@ -16,11 +16,6 @@ enum StatAction
     Feed,
     None
 }
-// [Serializable]
-// public class Audio
-// {
-//     public AudioClip audioclip;
-// }
 
 public class Proximity : MonoBehaviour
 {
@@ -87,6 +82,7 @@ public class Proximity : MonoBehaviour
         }
     }
 
+// Plays a random audioclip from the list as long as there are some and its not playing already.
     private void PlayAudio()
     {
         if (!audioSource.isPlaying && audioclips.Count > 0)
