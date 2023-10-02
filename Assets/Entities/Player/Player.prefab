@@ -183,7 +183,7 @@ MonoBehaviour:
       m_Action: Pause
       m_Flags: 0
     m_Flags: 0
-  maxMoveSpeed: 1.5
+  maxMoveSpeed: 2.5
   moveAcceleration: 12
   turnSpeed: 12
   rigidBody: {fileID: 4351865557579159815}
