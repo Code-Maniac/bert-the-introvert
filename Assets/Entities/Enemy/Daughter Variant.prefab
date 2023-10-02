@@ -8,6 +8,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -5132873325643875761, guid: 4831ed066659c14449d32e23df111232, type: 3}
+      propertyPath: maxDist
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: -5132873325643875761, guid: 4831ed066659c14449d32e23df111232, type: 3}
+      propertyPath: maxChange
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 5216852960379332178, guid: 4831ed066659c14449d32e23df111232, type: 3}
       propertyPath: m_LocalPosition.x
       value: 13.09
@@ -48,9 +56,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6818580002521164367, guid: 4831ed066659c14449d32e23df111232, type: 3}
+      propertyPath: m_Text
+      value: the daughter
+      objectReference: {fileID: 0}
+    - target: {fileID: 8153317020573724764, guid: 4831ed066659c14449d32e23df111232, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 10e09a10c5fbf604db2ebdeccd332eb6, type: 3}
     - target: {fileID: 9151968008984544935, guid: 4831ed066659c14449d32e23df111232, type: 3}
       propertyPath: m_Name
       value: Daughter Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 9151968008984544935, guid: 4831ed066659c14449d32e23df111232, type: 3}
+      propertyPath: m_TagString
+      value: Daughter
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -19,6 +19,8 @@ TagManager:
   - Toilet
   - Oven
   - Sofa
+  - Daughter
+  - Dog
   layers:
   - Default
   - TransparentFX

@@ -12,7 +12,10 @@ EditorBuildSettings:
     path: Assets/Scenes/Intro 1.unity
     guid: 659660b248293694b99e2bfcf2311ba3
   - enabled: 1
-    path: Assets/Scenes/MainScene.unity
+    path: Assets/Scenes/Day 1.unity
+    guid: aacec1d8de9369f44a290be8b7de0a0e
+  - enabled: 1
+    path: Assets/Scenes/MainLevelTemplate.unity
     guid: 9ffb4a85711e1284588db79e03f44bb8
   - enabled: 1
     path: Assets/Scenes/youwin.unity
