@@ -2585,7 +2585,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6747719968981084552, guid: 567bbed18e65bb940b3d4229ae00961a, type: 3}
       propertyPath: jobsComplete
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6747719968981084552, guid: 567bbed18e65bb940b3d4229ae00961a, type: 3}
       propertyPath: tasks.Array.data[0].completed
@@ -2594,7 +2594,7 @@ PrefabInstance:
     - target: {fileID: 6747719968981084552, guid: 567bbed18e65bb940b3d4229ae00961a, type: 3}
       propertyPath: tasks.Array.data[0].taskObject
       value: 
-      objectReference: {fileID: 2053337865}
+      objectReference: {fileID: 5488660311481405417}
     - target: {fileID: 6747719968981084552, guid: 567bbed18e65bb940b3d4229ae00961a, type: 3}
       propertyPath: tasks.Array.data[0].jobDescription
       value: do the dishes
@@ -10320,11 +10320,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e2bdd89acc5f8d478e84f02f26b05ca, type: 3}
---- !u!1 &2053337865 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3900018816604593712, guid: 456afeee6fe958145ba3fe174ec48379, type: 3}
-  m_PrefabInstance: {fileID: 5488660311481405416}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2082604194
 GameObject:
   m_ObjectHideFlags: 0
@@ -11149,6 +11144,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 456afeee6fe958145ba3fe174ec48379, type: 3}
+--- !u!1 &5488660311481405417 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3900018816604593712, guid: 456afeee6fe958145ba3fe174ec48379, type: 3}
+  m_PrefabInstance: {fileID: 5488660311481405416}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6039347737028305052
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -202,15 +202,13 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 294199631}
-  m_Text: 'Bert has jobs.
+  m_Text: 'Meet Bert the Introvert.
 
-    Bert is a good man.
+    He wants to be alone.
 
-    Bert will do the jobs..
+    Survive the day.
 
-
-    ..but
-    alone.'
+'
   m_OffsetZ: 0
   m_CharacterSize: 0.06
   m_LineSpacing: 1.57
@@ -412,7 +410,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1058465678}
-  m_Text: Day 2
+  m_Text: Day 1
   m_OffsetZ: 0
   m_CharacterSize: 0.1
   m_LineSpacing: 1
