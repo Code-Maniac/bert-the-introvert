@@ -1,4 +1,12 @@
+// using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Text;
+using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 enum StatAction
 {
@@ -8,6 +16,11 @@ enum StatAction
     Feed,
     None
 }
+// [Serializable]
+// public class Audio
+// {
+//     public AudioClip audioclip;
+// }
 
 public class Proximity : MonoBehaviour
 {
@@ -17,11 +30,14 @@ public class Proximity : MonoBehaviour
     public bool inUse = false;
     Vector3 playerPos;
     Vector3 enemyPos;
+    AudioSource audioSource;
 
     [SerializeField] GameObject text;
     [SerializeField] bool alwaysShowText = false;
     [SerializeField] bool actioned = false;
     [SerializeField] GameObject player;
+
+    [SerializeField] private List<AudioClip> audioclips;
 
 
     [SerializeField] StatAction statAction;
@@ -35,7 +51,7 @@ public class Proximity : MonoBehaviour
     void Start()
     {
         _playerController = player.GetComponent<PlayerController>();
-
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -52,7 +68,6 @@ public class Proximity : MonoBehaviour
 
         CheckRange();
         CheckAction();
-
     }
 
     private void CheckAction()
@@ -63,10 +78,20 @@ public class Proximity : MonoBehaviour
 
             CalculateChange();
             MakeChange();
+            PlayAudio();
+
         }
         else if (Input.GetKeyUp("space"))
         {
             inUse = false;
+        }
+    }
+
+    private void PlayAudio()
+    {
+        if (!audioSource.isPlaying && audioclips.Count > 0)
+        {
+            audioSource.PlayOneShot(audioclips[Random.Range(0, audioclips.Count)]);
         }
     }
 

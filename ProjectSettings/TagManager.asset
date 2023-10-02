@@ -11,6 +11,14 @@ TagManager:
   - Exercise Bike
   - TV
   - Son
+  - Sons Bed
+  - Daughters Bed
+  - Player Bed
+  - Dishes
+  - Shower
+  - Toilet
+  - Oven
+  - Sofa
   layers:
   - Default
   - TransparentFX
