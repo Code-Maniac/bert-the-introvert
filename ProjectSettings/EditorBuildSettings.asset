@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/NicksTestScene.unity
     guid: 3dd55135ed7637c4097222fa7fc0357e
   - enabled: 1
+    path: Assets/Scenes/StartScene.unity
+    guid: a27e7c00acb8739418b44dce3605b08c
+  - enabled: 1
     path: Assets/Scenes/Intro 1.unity
     guid: 659660b248293694b99e2bfcf2311ba3
   - enabled: 1
