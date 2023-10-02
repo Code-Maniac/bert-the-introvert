@@ -97,9 +97,21 @@ public class PlayerStats : MonoBehaviour
         DecayStats();
         UpdateUI();
 
-        if (currentBoredom <= 0 || currentFitness <= 0 || currentHunger <= 0 || currentPersonalSpace <= 0)
+        if (currentBoredom <= 0)
         {
-            GameOver();
+            SceneManager.LoadScene("GameOver Boredom");
+        }
+        else if (currentFitness <= 0)
+        {
+            SceneManager.LoadScene("GameOver Fitness");
+        }
+        else if (currentHunger <= 0)
+        {
+            SceneManager.LoadScene("GameOver Hunger");
+        }
+        else if (currentPersonalSpace <= 0)
+        {
+            SceneManager.LoadScene("GameOver");
         }
 
         if (IsAnnoyed())
@@ -125,8 +137,5 @@ public class PlayerStats : MonoBehaviour
         boredomUi.GetComponent<Image>().fillAmount = currentBoredom / 100;
         personalSpaceUi.GetComponent<Image>().fillAmount = currentPersonalSpace / 100;
     }
-        private static void GameOver()
-    {
-        SceneManager.LoadScene("GameOver");
-    }
+
 }

@@ -538,6 +538,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7631052435157651890, guid: bf3bc10326c30404d8e6ea442f8061e4, type: 3}
   m_PrefabInstance: {fileID: 2087071403903814390}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &78329384 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7055248591011244911, guid: f0901da83a83c3442955035a4a8c6162, type: 3}
+  m_PrefabInstance: {fileID: 3484959423634718064}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &129026069
 GameObject:
   m_ObjectHideFlags: 0
@@ -791,6 +796,11 @@ MonoBehaviour:
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 8792647389443572754, guid: 2e2bdd89acc5f8d478e84f02f26b05ca, type: 3}
   m_PrefabInstance: {fileID: 22882622}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &328486018 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1218565443817217802, guid: 236cfafb6802aad4e9f806fbb18a1ca9, type: 3}
+  m_PrefabInstance: {fileID: 8338091268752291315}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &346322809
 GameObject:
@@ -1330,8 +1340,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 854757796}
     - target: {fileID: -4229976940169873991, guid: d14d53aacbb69624aa28503c8191f683, type: 3}
+      propertyPath: rateHunger
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: -4229976940169873991, guid: d14d53aacbb69624aa28503c8191f683, type: 3}
       propertyPath: rateBoredom
-      value: 55
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: -4229976940169873991, guid: d14d53aacbb69624aa28503c8191f683, type: 3}
+      propertyPath: rateFitness
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: -4229976940169873991, guid: d14d53aacbb69624aa28503c8191f683, type: 3}
+      propertyPath: startBoredom
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: -4229976940169873991, guid: d14d53aacbb69624aa28503c8191f683, type: 3}
       propertyPath: personalSpaceUi
@@ -2577,9 +2599,14 @@ PrefabInstance:
       propertyPath: m_text
       value: '<u>TO DO</u>
 
+        
 
+        use treadmill
 
-        do the dishes
+        do laundry
+
+        fix
+        tv
 
 '
       objectReference: {fileID: 0}
@@ -2596,16 +2623,36 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6747719968981084552, guid: 567bbed18e65bb940b3d4229ae00961a, type: 3}
+      propertyPath: tasks.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6747719968981084552, guid: 567bbed18e65bb940b3d4229ae00961a, type: 3}
       propertyPath: tasks.Array.data[0].completed
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6747719968981084552, guid: 567bbed18e65bb940b3d4229ae00961a, type: 3}
       propertyPath: tasks.Array.data[0].taskObject
       value: 
-      objectReference: {fileID: 5488660311481405417}
+      objectReference: {fileID: 1443582429}
+    - target: {fileID: 6747719968981084552, guid: 567bbed18e65bb940b3d4229ae00961a, type: 3}
+      propertyPath: tasks.Array.data[1].taskObject
+      value: 
+      objectReference: {fileID: 328486018}
+    - target: {fileID: 6747719968981084552, guid: 567bbed18e65bb940b3d4229ae00961a, type: 3}
+      propertyPath: tasks.Array.data[2].taskObject
+      value: 
+      objectReference: {fileID: 78329384}
     - target: {fileID: 6747719968981084552, guid: 567bbed18e65bb940b3d4229ae00961a, type: 3}
       propertyPath: tasks.Array.data[0].jobDescription
-      value: do the dishes
+      value: use treadmill
+      objectReference: {fileID: 0}
+    - target: {fileID: 6747719968981084552, guid: 567bbed18e65bb940b3d4229ae00961a, type: 3}
+      propertyPath: tasks.Array.data[1].jobDescription
+      value: do laundry
+      objectReference: {fileID: 0}
+    - target: {fileID: 6747719968981084552, guid: 567bbed18e65bb940b3d4229ae00961a, type: 3}
+      propertyPath: tasks.Array.data[2].jobDescription
+      value: fix tv
       objectReference: {fileID: 0}
     - target: {fileID: 7605499073049933475, guid: 567bbed18e65bb940b3d4229ae00961a, type: 3}
       propertyPath: m_Pivot.x
@@ -3071,6 +3118,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1443582429 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4132323786037977333, guid: 80493fd58be176741948f8a6487516c1, type: 3}
+  m_PrefabInstance: {fileID: 359342877948515127}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1450875692
 GameObject:
   m_ObjectHideFlags: 0
@@ -11152,11 +11204,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 456afeee6fe958145ba3fe174ec48379, type: 3}
---- !u!1 &5488660311481405417 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3900018816604593712, guid: 456afeee6fe958145ba3fe174ec48379, type: 3}
-  m_PrefabInstance: {fileID: 5488660311481405416}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6039347737028305052
 PrefabInstance:
   m_ObjectHideFlags: 0

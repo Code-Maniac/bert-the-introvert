@@ -27,12 +27,27 @@ EditorBuildSettings:
     path: Assets/Scenes/Day 3.unity
     guid: a17346b721f64cb42a55c1856fbac3e8
   - enabled: 1
+    path: Assets/Scenes/Intro 4.unity
+    guid: 04464cb49f1a3594d98438aef1032187
+  - enabled: 1
+    path: Assets/Scenes/Day 4.unity
+    guid: a80dfc0ff2c87fc45ba6d1dbaf0151b1
+  - enabled: 1
     path: Assets/Scenes/youwin.unity
     guid: 99c9a9d38ebb6864fab54195bb3708b0
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MainLevelTemplate.unity
     guid: 9ffb4a85711e1284588db79e03f44bb8
   - enabled: 1
     path: Assets/Scenes/GameOver.unity
     guid: ef8040af9a86e6a4eaede019a7d843cf
+  - enabled: 1
+    path: Assets/Scenes/GameOver Hunger.unity
+    guid: c786da7866a144f44bbcceaafd786e28
+  - enabled: 1
+    path: Assets/Scenes/GameOver Fitness.unity
+    guid: 31fef44c67ae4cb46975e350d51546ca
+  - enabled: 1
+    path: Assets/Scenes/GameOver Boredom.unity
+    guid: 8ecda53a502c83847acb93bfaa028510
   m_configObjects: {}
